@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 
 export default function LoginPage() {
   const [email, setEmail] = useState('')
@@ -26,23 +27,6 @@ export default function LoginPage() {
       setError(error.message)
     } else {
       router.push('/digest')
-    }
-    setLoading(false)
-  }
-
-  const handleRegister = async () => {
-    setLoading(true)
-    setError('')
-
-    const { error } = await supabase.auth.signUp({
-      email,
-      password,
-    })
-
-    if (error) {
-      setError(error.message)
-    } else {
-      alert('Проверьте почту для подтверждения!')
     }
     setLoading(false)
   }
@@ -83,14 +67,14 @@ export default function LoginPage() {
             {loading ? 'Загрузка...' : 'Войти'}
           </button>
 
-          <button
-            type="button"
-            onClick={handleRegister}
-            disabled={loading}
-            className="w-full py-3 bg-white/5 hover:bg-white/10 rounded-lg text-gray-300 font-medium transition-colors disabled:opacity-50"
-          >
-            Создать аккаунт
-          </button>
+          <Link href="/register">
+            <button
+              type="button"
+              className="w-full py-3 bg-white/5 hover:bg-white/10 rounded-lg text-gray-300 font-medium transition-colors"
+            >
+              Создать аккаунт
+            </button>
+          </Link>
         </form>
       </div>
     </div>
