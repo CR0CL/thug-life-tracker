@@ -35,14 +35,12 @@ export default function Analytics() {
   const loadData = async () => {
     setLoading(true)
     
-    // Получаем пользователя
     const { data: { user } } = await supabase.auth.getUser()
     if (!user) {
       setLoading(false)
       return
     }
 
-    // Получаем дату для фильтра
     const now = new Date()
     let startDate = new Date()
     if (timeRange === 'week') {
@@ -50,11 +48,10 @@ export default function Analytics() {
     } else if (timeRange === 'month') {
       startDate.setMonth(now.getMonth() - 1)
     } else {
-      startDate = new Date(0) // всё время
+      startDate = new Date(0)
     }
     const startStr = startDate.toISOString()
 
-    // Загружаем транзакции
     const { data: transactionsData } = await supabase
       .from('transactions')
       .select('*')
@@ -62,7 +59,6 @@ export default function Analytics() {
       .order('created_at', { ascending: true })
     setTransactions(transactionsData || [])
 
-    // Загружаем еду
     const { data: foodData } = await supabase
       .from('food_logs')
       .select('*')
@@ -70,7 +66,6 @@ export default function Analytics() {
       .order('logged_at', { ascending: true })
     setFoodLogs(foodData || [])
 
-    // Загружаем привычки
     const { data: ritualsData } = await supabase
       .from('rituals')
       .select('*')
@@ -79,7 +74,6 @@ export default function Analytics() {
     setLoading(false)
   }
 
-  // Данные для графика расходов по дням
   const getDailyExpenses = () => {
     const daily: Record<string, { day: string, income: number, expense: number }> = {}
     
@@ -98,7 +92,6 @@ export default function Analytics() {
     return Object.values(daily).slice(-7)
   }
 
-  // Данные для круговой диаграммы категорий
   const getCategoryData = () => {
     const categories: Record<string, number> = {}
     const expenses = transactions.filter(t => t.type === 'expense')
@@ -111,7 +104,6 @@ export default function Analytics() {
     return Object.entries(categories).map(([name, value]) => ({ name, value }))
   }
 
-  // Данные для графика калорий
   const getCalorieData = () => {
     const daily: Record<string, { day: string, calories: number }> = {}
     
@@ -126,7 +118,6 @@ export default function Analytics() {
     return Object.values(daily).slice(-7)
   }
 
-  // Статистика
   const totalIncome = transactions.filter(t => t.type === 'income').reduce((sum, t) => sum + t.amount, 0)
   const totalExpense = transactions.filter(t => t.type === 'expense').reduce((sum, t) => sum + t.amount, 0)
   const totalCalories = foodLogs.reduce((sum, f) => sum + (f.calories || 0), 0)
@@ -143,13 +134,11 @@ export default function Analytics() {
 
   return (
     <div className="min-h-screen bg-black text-white px-4 py-6">
-      {/* Заголовок */}
       <div className="mb-6">
         <p className="text-gray-400 text-sm">📊 ANALYTICS</p>
         <h1 className="text-2xl font-bold">Аналитика</h1>
       </div>
 
-      {/* Фильтры */}
       <div className="flex gap-2 mb-6">
         {['week', 'month', 'all'].map((range) => (
           <button
@@ -166,7 +155,6 @@ export default function Analytics() {
         ))}
       </div>
 
-      {/* Статистика */}
       <div className="grid grid-cols-2 gap-3 mb-6">
         <div className="bg-white/5 rounded-xl p-3 border border-white/10">
           <div className="flex items-center gap-2 mb-1">
@@ -200,7 +188,6 @@ export default function Analytics() {
         </div>
       </div>
 
-      {/* График доходов/расходов */}
       {getDailyExpenses().length > 0 && (
         <div className="bg-white/5 rounded-xl p-4 border border-white/10 mb-6">
           <p className="text-sm text-gray-400 mb-3">Доходы и расходы по дням</p>
@@ -219,7 +206,6 @@ export default function Analytics() {
         </div>
       )}
 
-      {/* Круговая диаграмма категорий */}
       {getCategoryData().length > 0 && (
         <div className="bg-white/5 rounded-xl p-4 border border-white/10 mb-6">
           <p className="text-sm text-gray-400 mb-3">Категории расходов</p>
@@ -232,7 +218,7 @@ export default function Analytics() {
                 cx="50%"
                 cy="50%"
                 outerRadius={80}
-                label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                label={({ name, percent }) => `${name} ${percent ? (percent * 100).toFixed(0) : 0}%`}
                 labelLine={false}
               >
                 {getCategoryData().map((entry, index) => (
@@ -248,7 +234,6 @@ export default function Analytics() {
         </div>
       )}
 
-      {/* График калорий */}
       {getCalorieData().length > 0 && (
         <div className="bg-white/5 rounded-xl p-4 border border-white/10 mb-6">
           <p className="text-sm text-gray-400 mb-3">Калории по дням</p>
@@ -266,7 +251,6 @@ export default function Analytics() {
         </div>
       )}
 
-      {/* Пустое состояние */}
       {transactions.length === 0 && foodLogs.length === 0 && (
         <div className="bg-white/5 rounded-xl p-8 border border-white/10 text-center">
           <p className="text-gray-400 text-sm">Нет данных для аналитики</p>

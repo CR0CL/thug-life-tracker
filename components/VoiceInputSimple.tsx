@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Mic, MicOff, Loader2 } from 'lucide-react'
+import { Mic, MicOff } from 'lucide-react'
 
 interface VoiceInputSimpleProps {
   onTranscript: (text: string) => void
@@ -15,7 +15,7 @@ export default function VoiceInputSimple({ onTranscript, onError }: VoiceInputSi
 
   useEffect(() => {
     // Проверяем поддержку браузера
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
+    const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition
     if (!SpeechRecognition) {
       setIsSupported(false)
       onError?.('Ваш браузер не поддерживает голосовой ввод')

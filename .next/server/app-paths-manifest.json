@@ -1,5 +1,22 @@
 {
+  "/_not-found/page": "app/_not-found/page.js",
+  "/api/meetings/route": "app/api/meetings/route.js",
+  "/api/food/route": "app/api/food/route.js",
+  "/api/photo/route": "app/api/photo/route.js",
+  "/api/rituals/route": "app/api/rituals/route.js",
+  "/api/tasks/route": "app/api/tasks/route.js",
+  "/api/transactions/route": "app/api/transactions/route.js",
+  "/api/voice/route": "app/api/voice/route.js",
+  "/page": "app/page.js",
   "/(main)/analytics/page": "app/(main)/analytics/page.js",
+  "/(main)/food/page": "app/(main)/food/page.js",
+  "/(auth)/login/page": "app/(auth)/login/page.js",
+  "/(main)/digest/page": "app/(main)/digest/page.js",
+  "/(auth)/register/page": "app/(auth)/register/page.js",
+  "/(main)/money/page": "app/(main)/money/page.js",
+  "/(main)/notes/page": "app/(main)/notes/page.js",
+  "/(main)/meetings/page": "app/(main)/meetings/page.js",
+  "/(main)/rituals/page": "app/(main)/rituals/page.js",
   "/(main)/settings/page": "app/(main)/settings/page.js",
-  "/(main)/digest/page": "app/(main)/digest/page.js"
+  "/(main)/tasks/page": "app/(main)/tasks/page.js"
 }

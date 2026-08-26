@@ -10,15 +10,46 @@
       "page": "/",
       "matchers": [
         {
-          "regexp": "^/.*$",
-          "originalSource": "/:path*"
+          "regexp": "^(?:\\/(_next\\/data\\/[^/]{1,}))?\\/digest(.json)?[\\/#\\?]?$",
+          "originalSource": "/digest"
+        },
+        {
+          "regexp": "^(?:\\/(_next\\/data\\/[^/]{1,}))?\\/login(.json)?[\\/#\\?]?$",
+          "originalSource": "/login"
+        },
+        {
+          "regexp": "^(?:\\/(_next\\/data\\/[^/]{1,}))?\\/tasks(.json)?[\\/#\\?]?$",
+          "originalSource": "/tasks"
+        },
+        {
+          "regexp": "^(?:\\/(_next\\/data\\/[^/]{1,}))?\\/notes(.json)?[\\/#\\?]?$",
+          "originalSource": "/notes"
+        },
+        {
+          "regexp": "^(?:\\/(_next\\/data\\/[^/]{1,}))?\\/money(.json)?[\\/#\\?]?$",
+          "originalSource": "/money"
+        },
+        {
+          "regexp": "^(?:\\/(_next\\/data\\/[^/]{1,}))?\\/food(.json)?[\\/#\\?]?$",
+          "originalSource": "/food"
+        },
+        {
+          "regexp": "^(?:\\/(_next\\/data\\/[^/]{1,}))?\\/meetings(.json)?[\\/#\\?]?$",
+          "originalSource": "/meetings"
+        },
+        {
+          "regexp": "^(?:\\/(_next\\/data\\/[^/]{1,}))?\\/rituals(.json)?[\\/#\\?]?$",
+          "originalSource": "/rituals"
         }
       ],
       "wasm": [],
       "assets": [],
       "env": {
-        "__NEXT_BUILD_ID": "development",
-        "NEXT_SERVER_ACTIONS_ENCRYPTION_KEY": "T5m5s19amfNqBtClszzOxnAzBr4tLi//5Zt3oapMC/o="
+        "__NEXT_BUILD_ID": "WunaP_nRnW4Bwqkwbb8YS",
+        "NEXT_SERVER_ACTIONS_ENCRYPTION_KEY": "cdSPxrDm9fpakS9mho7Uto+nAOgSqKuQvpvIFDcsLMY=",
+        "__NEXT_PREVIEW_MODE_ID": "28c9e4d1b4c581dacd8944d1944abef8",
+        "__NEXT_PREVIEW_MODE_ENCRYPTION_KEY": "d872fecf16d81012d2e98e7acd91b516bcb6a8c2a4e5ba90886cc47405c2dab5",
+        "__NEXT_PREVIEW_MODE_SIGNING_KEY": "552289047e5ba5b10e52a19dec84577675ee86f3909ffbccbd483bc6380047cb"
       }
     }
   },
