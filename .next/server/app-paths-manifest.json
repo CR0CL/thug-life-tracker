@@ -1,0 +1,5 @@
+{
+  "/(main)/analytics/page": "app/(main)/analytics/page.js",
+  "/(main)/settings/page": "app/(main)/settings/page.js",
+  "/(main)/digest/page": "app/(main)/digest/page.js"
+}
