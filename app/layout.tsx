@@ -1,7 +1,11 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import '@/styles/globals.css'
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ 
+  subsets: ['latin', 'cyrillic'],
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   title: 'Thug Life Tracker',
@@ -14,10 +18,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="ru">
-      <head>
-        <link rel="stylesheet" href="/styles.css" />
-      </head>
+    <html lang="ru" className="dark">
       <body className={inter.className}>
         {children}
       </body>
